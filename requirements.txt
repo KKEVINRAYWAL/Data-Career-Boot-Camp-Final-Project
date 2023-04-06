@@ -1,0 +1,10 @@
+kaggle
+zipfile
+cv2
+numpy
+pandas
+sklearn
+tensorflow
+matplotlib
+flask
+Pillow
