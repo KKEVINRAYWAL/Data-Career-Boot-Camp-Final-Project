@@ -3,10 +3,11 @@ Clone the repository.
 Install the dependencies:
 ```bash
 pip install -r requirements.txt
-```
+
+
+
+
 ### Usage
 To start the application:
-```bash
-python app.py
 
-```
+python app.py
