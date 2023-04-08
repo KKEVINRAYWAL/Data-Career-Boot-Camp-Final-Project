@@ -2,7 +2,7 @@ import os
 import kaggle
 import zipfile
 
-import cv2
+
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -21,8 +21,8 @@ import logging
 
 def get_animals_detection_images_dataset():
     # Set the dataset name and owner
-    dataset_name = 'pbprabhat/animal-detection-images-dataset'
-    dataset_owner = 'pbprabhat'
+    dataset_name = 'antoreepjana/animals-detection-images-dataset'
+    dataset_owner = 'antoreepjana'
     
     # Load Kaggle API credentials from kaggle.json file
     module_dir = os.path.dirname(os.path.abspath(__file__))
@@ -74,9 +74,10 @@ def get_animals_detection_images_dataset():
 
 
 from keras.preprocessing.image import ImageDataGenerator
-
-from tensorflow.keras.models import Sequential, Conv2D, MaxPooling2D, Flatten, Dense
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv2D, Flatten, Dense, MaxPooling2D
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
+
 
 import os
 import logging
@@ -164,11 +165,10 @@ def data_preprocessing(data_dir, img_size=224, test_size=0.2, random_state=42):
 
 
 
-from tensorflow.keras.models import Sequential, Conv2D, MaxPooling2D, Flatten, Dense
-
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
+
 import numpy as np
 from sklearn.metrics import classification_report
 import logging
