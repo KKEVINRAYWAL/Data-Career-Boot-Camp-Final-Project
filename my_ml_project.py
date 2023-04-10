@@ -1,6 +1,4 @@
 import os
-import kaggle
-import zipfile
 
 
 import numpy as np
@@ -11,7 +9,6 @@ import os
 import kaggle
 
 import os
-import json
 import kaggle
 import os
 import json
@@ -19,58 +16,8 @@ import kaggle
 import zipfile
 import logging
 
-def get_animals_detection_images_dataset():
-    # Set the dataset name and owner
-    dataset_name = 'antoreepjana/animals-detection-images-dataset'
-    dataset_owner = 'antoreepjana'
-    
-    # Load Kaggle API credentials from kaggle.json file
-    module_dir = os.path.dirname(os.path.abspath(__file__))
-    creds_file = os.path.join(module_dir, 'kaggle.json')
-    with open(creds_file, 'r') as f:
-        kaggle_creds = json.load(f)
-
-    # Set Kaggle API credentials
-    os.environ['KAGGLE_USERNAME'] = kaggle_creds['username']
-    os.environ['KAGGLE_KEY'] = kaggle_creds['key']
-
-    # Authenticate the Kaggle API
-    kaggle.api.authenticate()
-    
-    # Create a directory to store the downloaded data
-    os.makedirs('./data', exist_ok=True)
-
-    # Create a logging object
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.INFO)
-
-    # Create a console handler and set its log level to INFO
-    ch = logging.StreamHandler()
-    ch.setLevel(logging.INFO)
-
-    # Create a formatter to specify the log message format
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    ch.setFormatter(formatter)
-
-    # Add the console handler to the logger
-    logger.addHandler(ch)
-
-    # Use the Kaggle API to download the dataset
-    logger.info('Downloading dataset...')
-    try:
-        kaggle.api.dataset_download_files(dataset_name, path='./data', unzip=True)
-    except Exception as e:
-        logger.error(f"Error downloading dataset: {e}")
-        return None
-
-    # Extract the image files from the archive
-    logger.info('Extracting image files...')
-    with zipfile.ZipFile('./data/animal-detection-images-dataset.zip', 'r') as zip_ref:
-        zip_ref.extractall('./data')
-
-    # Return the directory path containing the image files
-    logger.info('Dataset downloaded and extracted successfully.')
-    return './data/animal-detection-images-dataset'
+import os
+import logging
 
 
 from keras.preprocessing.image import ImageDataGenerator
@@ -161,10 +108,6 @@ def data_preprocessing(data_dir, img_size=224, test_size=0.2, random_state=42):
     logger.info("Data preprocessing completed successfully")
     return train_generator, test_generator
 
-
-
-
-
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
@@ -213,10 +156,6 @@ def build_model(input_shape=(224, 224, 3), num_classes=19):
     
     logging.info("Model building complete!")
     return model
-
-
-
-
 
 
 import logging
